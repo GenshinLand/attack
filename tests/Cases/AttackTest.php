@@ -42,5 +42,6 @@ class AttackTest extends TestCase
         $p2 = $p1->attack($p2, new Pyro());
 
         $this->assertSame(826, $p2->hp);
+        $this->assertSame(9, $p2->element->getValue());
     }
 }
