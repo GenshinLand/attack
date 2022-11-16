@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Genshin\Attack;
 
 use Genshin\Element\ElementInterface;
+use Genshin\Element\Reaction\Increase;
 
 class Person
 {
@@ -33,9 +34,27 @@ class Person
 
     public function attack(Person $person, ?ElementInterface $element = null): Person
     {
-        $hp = $this->attack * ($this->attack / $person->defense);
+        if (! $element) {
+            $hp = $this->attack * ($this->attack / $person->defense);
 
-        $person->hp -= $hp;
+            $person->hp -= (int) max($hp, 0);
+
+            return $person;
+        }
+
+        $reaction = $element->react($person->element);
+        switch (true) {
+            case $reaction instanceof Increase:
+                $attack = $this->attack * (1 + $reaction->value + $this->increase->getValue($element));
+
+                $hp = $attack * (1 - $person->resistance->getValue($person->element));
+
+                $person->hp -= (int) max($hp, 0);
+
+                break;
+            default:
+                break;
+        }
 
         return $person;
     }

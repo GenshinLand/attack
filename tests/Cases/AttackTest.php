@@ -14,6 +14,8 @@ namespace HyperfTest\Cases;
 use Genshin\Attack\ElementIncrease;
 use Genshin\Attack\Person;
 use Genshin\Attack\Resistance;
+use Genshin\Element\Hydro;
+use Genshin\Element\Pyro;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -30,5 +32,15 @@ class AttackTest extends TestCase
         $p2 = $p1->attack($p2);
 
         $this->assertSame(900, $p2->hp);
+    }
+
+    public function testAttackWithElement()
+    {
+        $p1 = new Person(1000, 100, 100, new Resistance(), new ElementIncrease());
+        $p2 = new Person(1000, 100, 100, new Resistance(), new ElementIncrease(), new Hydro());
+
+        $p2 = $p1->attack($p2, new Pyro());
+
+        $this->assertSame(826, $p2->hp);
     }
 }
