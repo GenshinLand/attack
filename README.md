@@ -1,5 +1,5 @@
-# component-creator
+# 攻击模块
 
 ```
-composer create-project hyperf/component-creator
+composer require genshin/attack
 ```
