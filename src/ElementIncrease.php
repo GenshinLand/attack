@@ -11,6 +11,7 @@ declare(strict_types=1);
  */
 namespace Sworder\Attack;
 
+use JsonSerializable;
 use Sworder\Element\ElementInterface;
 use Sworder\Element\MainElement;
 use Sworder\Element\VariantElement;
@@ -18,7 +19,7 @@ use Sworder\Element\VariantElement;
 /**
  * 元素增伤.
  */
-class ElementIncrease
+class ElementIncrease implements JsonSerializable
 {
     public function __construct(
         public float $gold = 0,
@@ -30,6 +31,20 @@ class ElementIncrease
         public float $cryo = 0,
         public float $electro = 0,
     ) {
+    }
+
+    public function jsonSerialize(): mixed
+    {
+        return [
+            MainElement::GOLD->value => $this->gold,
+            MainElement::DENDRO->value => $this->dendro,
+            MainElement::HYDRO->value => $this->hydro,
+            MainElement::PYRO->value => $this->pyro,
+            MainElement::GEO->value => $this->geo,
+            VariantElement::ANEMO->value => $this->anemo,
+            VariantElement::CRYO->value => $this->cryo,
+            VariantElement::ELECTRO->value => $this->electro,
+        ];
     }
 
     public function getValue(ElementInterface $element): float
