@@ -29,6 +29,7 @@ class StateTest extends TestCase
             1000,
             100,
             100,
+            10,
             new Resistance(0.8),
             new ElementIncrease(0.8),
             new Gold()

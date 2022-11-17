@@ -27,8 +27,8 @@ class AttackTest extends TestCase
 {
     public function testAttackWithNoElement()
     {
-        $p1 = new State(1000, 100, 100, new Resistance(), new ElementIncrease());
-        $p2 = new State(1000, 100, 100, new Resistance(), new ElementIncrease());
+        $p1 = new State(1000, 100, 100, 10, new Resistance(), new ElementIncrease());
+        $p2 = new State(1000, 100, 100, 10, new Resistance(), new ElementIncrease());
 
         $p2 = $p1->attack($p2);
 
@@ -37,16 +37,16 @@ class AttackTest extends TestCase
 
     public function testAttackWithElement()
     {
-        $p1 = new State(1000, 100, 100, new Resistance(), new ElementIncrease());
-        $p2 = new State(1000, 100, 100, new Resistance(), new ElementIncrease(), new Pyro());
+        $p1 = new State(1000, 100, 100, 10, new Resistance(), new ElementIncrease());
+        $p2 = new State(1000, 100, 100, 10, new Resistance(), new ElementIncrease(), new Pyro());
 
         $p2 = $p1->attack($p2, new Hydro());
 
         $this->assertSame(769, $p2->hp);
         $this->assertSame(5, $p2->element->getValue());
 
-        $p1 = new State(1000, 100, 100, new Resistance(), new ElementIncrease());
-        $p2 = new State(1000, 100, 100, new Resistance(), new ElementIncrease(), new Pyro(1));
+        $p1 = new State(1000, 100, 100, 10, new Resistance(), new ElementIncrease());
+        $p2 = new State(1000, 100, 100, 10, new Resistance(), new ElementIncrease(), new Pyro(1));
 
         $p2 = $p1->attack($p2, new Hydro());
 
@@ -57,8 +57,8 @@ class AttackTest extends TestCase
 
     public function testAttackWithNotReactElement()
     {
-        $p1 = new State(1000, 100, 100, new Resistance(), new ElementIncrease());
-        $p2 = new State(1000, 100, 100, new Resistance(), new ElementIncrease(), new Pyro());
+        $p1 = new State(1000, 100, 100, 10, new Resistance(), new ElementIncrease());
+        $p2 = new State(1000, 100, 100, 10, new Resistance(), new ElementIncrease(), new Pyro());
 
         $p2 = $p1->attack($p2, new Geo());
 

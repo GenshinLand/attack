@@ -23,6 +23,7 @@ class State implements JsonSerializable
         public int $hp,
         public int $attack,
         public int $defense,
+        public int $speed,
         public Resistance $resistance,
         public ElementIncrease $increase,
         public ?ElementInterface $element = null
@@ -35,6 +36,7 @@ class State implements JsonSerializable
             'hp' => $this->hp,
             'attack' => $this->attack,
             'defense' => $this->defense,
+            'speed' => $this->speed,
             'resistance' => $this->resistance,
             'increase' => $this->increase,
             'element' => $this->element,
@@ -48,12 +50,21 @@ class State implements JsonSerializable
         $hp = $data['hp'];
         $attack = $data['attack'];
         $defense = $data['defense'];
+        $speed = $data['speed'];
         $element = null;
         if (isset($data['element']['enum']) && $data['element']['value'] > 0) {
             $element = MainElement::from($data['element']['enum'])->make($data['element']['value']);
         }
 
-        return new static($hp, $attack, $defense, $resistance, $increase, $element);
+        return new static(
+            hp: $hp,
+            attack: $attack,
+            defense: $defense,
+            speed: $speed,
+            resistance: $resistance,
+            increase: $increase,
+            element: $element
+        );
     }
 
     public function withElement(ElementInterface $element): static
