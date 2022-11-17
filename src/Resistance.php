@@ -9,11 +9,11 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
-namespace Genshin\Attack;
+namespace Sworder\Attack;
 
-use Genshin\Element\ElementInterface;
-use Genshin\Element\MainElement;
-use Genshin\Element\VariantElement;
+use Sworder\Element\ElementInterface;
+use Sworder\Element\MainElement;
+use Sworder\Element\VariantElement;
 
 /**
  * 抗性.

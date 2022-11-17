@@ -9,7 +9,7 @@
     "description": "",
     "autoload": {
         "psr-4": {
-            "Genshin\\Attack\\": "src/"
+            "Sworder\\Attack\\": "src/"
         }
     },
     "autoload-dev": {

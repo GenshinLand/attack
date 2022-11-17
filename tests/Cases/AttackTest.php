@@ -11,13 +11,13 @@ declare(strict_types=1);
  */
 namespace HyperfTest\Cases;
 
-use Genshin\Attack\ElementIncrease;
-use Genshin\Attack\Person;
-use Genshin\Attack\Resistance;
-use Genshin\Element\Geo;
-use Genshin\Element\Hydro;
-use Genshin\Element\Pyro;
 use PHPUnit\Framework\TestCase;
+use Sworder\Attack\ElementIncrease;
+use Sworder\Attack\Person;
+use Sworder\Attack\Resistance;
+use Sworder\Element\Geo;
+use Sworder\Element\Hydro;
+use Sworder\Element\Pyro;
 
 /**
  * @internal

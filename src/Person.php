@@ -9,11 +9,11 @@ declare(strict_types=1);
  * @contact  group@hyperf.io
  * @license  https://github.com/hyperf/hyperf/blob/master/LICENSE
  */
-namespace Genshin\Attack;
+namespace Sworder\Attack;
 
-use Genshin\Element\ElementInterface;
-use Genshin\Element\Reaction\ConsumeInterface;
-use Genshin\Element\Reaction\IncreaseInterface;
+use Sworder\Element\ElementInterface;
+use Sworder\Element\Reaction\ConsumeInterface;
+use Sworder\Element\Reaction\IncreaseInterface;
 
 class Person
 {
