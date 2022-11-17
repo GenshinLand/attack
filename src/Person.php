@@ -44,14 +44,6 @@ class Person
         }
 
         $reaction = $element->react($person->element);
-        if ($reaction instanceof IncreaseInterface) {
-            $attack = $this->attack * (1 + $reaction->increase() + $this->increase->getValue($element));
-            if ($attack > 0) {
-                $hp = $attack * (1 - $person->resistance->getValue($person->element));
-                $person->hp -= (int) max($hp, 0);
-            }
-        }
-
         if ($reaction instanceof ConsumeInterface) {
             $value = $person->element->getValue() - $reaction->consume();
             if ($value > 0) {
@@ -65,6 +57,19 @@ class Person
                     $person->element = $element->toEnum()->make(-$value);
                 }
             }
+        }
+
+        $increase = 1 + $this->increase->getValue($element);
+
+        if ($reaction instanceof IncreaseInterface) {
+            $increase = $increase + $reaction->increase();
+        }
+
+
+        $attack = $this->attack * $increase;
+        if ($attack > 0) {
+            $hp = $attack * (1 - $person->resistance->getValue($person->element));
+            $person->hp -= (int) max($hp, 0);
         }
 
         return $person;
