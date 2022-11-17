@@ -65,7 +65,6 @@ class Person
             $increase = $increase + $reaction->increase();
         }
 
-
         $attack = $this->attack * $increase;
         if ($attack > 0) {
             $hp = $attack * (1 - $person->resistance->getValue($person->element));
