@@ -12,7 +12,8 @@ declare(strict_types=1);
 namespace Genshin\Attack;
 
 use Genshin\Element\ElementInterface;
-use Genshin\Element\Reaction\Increase;
+use Genshin\Element\Reaction\ConsumeInterface;
+use Genshin\Element\Reaction\IncreaseInterface;
 
 class Person
 {
@@ -43,17 +44,18 @@ class Person
         }
 
         $reaction = $element->react($person->element);
-        switch (true) {
-            case $reaction instanceof Increase:
-                $attack = $this->attack * (1 + $reaction->value + $this->increase->getValue($element));
-
+        if ($reaction instanceof IncreaseInterface) {
+            $attack = $this->attack * (1 + $reaction->increase() + $this->increase->getValue($element));
+            if ($attack > 0) {
                 $hp = $attack * (1 - $person->resistance->getValue($person->element));
-
                 $person->hp -= (int) max($hp, 0);
+            }
+        }
 
-                break;
-            default:
-                break;
+        if ($reaction instanceof ConsumeInterface) {
+            $person->element->setValue(
+                $person->element->getValue() - $reaction->consume()
+            );
         }
 
         return $person;

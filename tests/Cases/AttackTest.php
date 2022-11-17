@@ -37,11 +37,11 @@ class AttackTest extends TestCase
     public function testAttackWithElement()
     {
         $p1 = new Person(1000, 100, 100, new Resistance(), new ElementIncrease());
-        $p2 = new Person(1000, 100, 100, new Resistance(), new ElementIncrease(), new Hydro());
+        $p2 = new Person(1000, 100, 100, new Resistance(), new ElementIncrease(), new Pyro());
 
-        $p2 = $p1->attack($p2, new Pyro());
+        $p2 = $p1->attack($p2, new Hydro());
 
-        $this->assertSame(826, $p2->hp);
-        $this->assertSame(9, $p2->element->getValue());
+        $this->assertSame(769, $p2->hp);
+        $this->assertSame(5, $p2->element->getValue());
     }
 }
