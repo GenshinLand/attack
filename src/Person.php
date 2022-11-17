@@ -53,9 +53,18 @@ class Person
         }
 
         if ($reaction instanceof ConsumeInterface) {
-            $person->element->setValue(
-                $person->element->getValue() - $reaction->consume()
-            );
+            $value = $person->element->getValue() - $reaction->consume();
+            if ($value > 0) {
+                $person->element->setValue($value);
+            }
+
+            if ($value <= 0) {
+                $person->element = null;
+                if ($value < 0 && $element->isAttach()) {
+                    // 附着转化
+                    $person->element = $element->toEnum()->make(-$value);
+                }
+            }
         }
 
         return $person;

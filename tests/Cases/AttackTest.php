@@ -43,5 +43,14 @@ class AttackTest extends TestCase
 
         $this->assertSame(769, $p2->hp);
         $this->assertSame(5, $p2->element->getValue());
+
+        $p1 = new Person(1000, 100, 100, new Resistance(), new ElementIncrease());
+        $p2 = new Person(1000, 100, 100, new Resistance(), new ElementIncrease(), new Pyro(1));
+
+        $p2 = $p1->attack($p2, new Hydro());
+
+        $this->assertSame(769, $p2->hp);
+        $this->assertSame(4, $p2->element->getValue());
+        $this->assertInstanceOf(Hydro::class, $p2->element);
     }
 }
