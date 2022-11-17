@@ -27,6 +27,7 @@ class ElementIncrease
         public float $geo = 0,
         public float $hydro = 0,
         public float $pyro = 0,
+        public float $gold = 0,
     ) {
     }
 
@@ -40,6 +41,7 @@ class ElementIncrease
             Enum::GEO => $this->geo,
             Enum::HYDRO => $this->hydro,
             Enum::PYRO => $this->pyro,
+            Enum::GOLD => $this->gold,
         };
     }
 }

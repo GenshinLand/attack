@@ -27,6 +27,7 @@ class Resistance
         public float $geo = -0.16,
         public float $hydro = -0.16,
         public float $pyro = -0.16,
+        public float $gold = -0.16,
     ) {
     }
 
@@ -40,6 +41,7 @@ class Resistance
             Enum::GEO => $this->geo,
             Enum::HYDRO => $this->hydro,
             Enum::PYRO => $this->pyro,
+            Enum::GOLD => $this->gold,
         };
     }
 }
