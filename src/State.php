@@ -73,10 +73,10 @@ class State implements JsonSerializable
         return $this;
     }
 
-    public function attack(State $person, ?ElementInterface $element = null): State
+    public function attack(State $person, ?ElementInterface $element = null, float $rate = 1.0): State
     {
         if (! $element) {
-            $hp = $this->attack * ($this->attack / $person->defense);
+            $hp = $this->attack * ($this->attack / $person->defense) * $rate;
 
             $person->hp -= (int) max($hp, 0);
 
@@ -105,7 +105,7 @@ class State implements JsonSerializable
             $increase = $increase + $reaction->increase();
         }
 
-        $attack = $this->attack * $increase;
+        $attack = $this->attack * $increase * $rate;
         if ($attack > 0) {
             $hp = $attack * (1 - $person->resistance->getValue($person->element));
             $person->hp -= (int) max($hp, 0);
